@@ -80,13 +80,13 @@ let showNextPage = () => {
     })
     //Aplique un timeout para que se vea claramente como si se borran todos los elementos en pantalla
     //al hacer click en el boton de siguiente pagina
-    setTimeout(() => {
-        //***El problema esta en que se llama a la API mas de una vez, volviendo a escribir valores que fueron previamente borrados
-        //Aqui imprimo en consola la informacion que nos muestra como se llaman multiples "paginas" del API
-        console.log(charactersInfo.next)
-        apifetch = charactersInfo.next;
-        return getCharacter(apifetch);
-    }, "1000")
+
+    //***El problema esta en que se llama a la API mas de una vez, volviendo a escribir valores que fueron previamente borrados
+    //Aqui imprimo en consola la informacion que nos muestra como se llaman multiples "paginas" del API
+    console.log(charactersInfo.next)
+    apifetch = charactersInfo.next;
+    return getCharacter(apifetch);
+
 }
 let nextPageButton = document.getElementById("next-page")
 nextPageButton.addEventListener("click", showNextPage)
@@ -104,11 +104,10 @@ let showPreviousPage = () => {
         return
     } else {
         //Solo quiero que funcione en caso de que exista una pagina anterior
-        setTimeout(() => {
-            apifetch = charactersInfo.prev;
-            //Se llama a la API con la informacion de la pagina anterior
-            return getCharacter(apifetch);
-        }, "1000")
+        apifetch = charactersInfo.prev;
+        //Se llama a la API con la informacion de la pagina anterior
+        return getCharacter(apifetch);
+
     }
 }
 // Escuchamos cuando el boton recibe un click para llamar a la funcion anterior
