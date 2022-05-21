@@ -1,8 +1,13 @@
 let characters = ""
+let charactersInfo = ""
 let characterCards = document.getElementById("characterCards")
 let characterCard = ""
 let allCardsVisible = ""
 let apifetch = "https://rickandmortyapi.com/api/character"
+let slideCointainer = document.getElementById("slide-track")
+
+let nextPageButton = document.getElementById("next-page")
+let previusPageButton = document.getElementById("previus-page")
 
 
 let getCharacter = (apifecth) => {
@@ -15,10 +20,24 @@ let getCharacter = (apifecth) => {
         .then((answer) => {
             characters = answer.results
             charactersInfo = answer.info
-            //Creo cada personaje en una "tarjeta de personaje"
+
+
             characters.forEach(function (char) {
+                //CARROUSEL
+                slide = document.createElement("div")
+                slide.classList.add("slide")
+                slide.innerHTML = `<div class="container5" id="container5" > 
+                <img src="${char.image}" alt="" /> 
+                <h1>Name: ${char.name}</h1>
+                <h1>Species: ${char.species}</h1>
+                <h1>Gender: ${char.gender}</h1>
+                <h1>Status: ${char.status}</h1></div>`
+                slideCointainer.appendChild(slide)
+                //CARROUSEL
+
+                //CHARACTER CARDS
                 characterCard = document.createElement("div")
-                characterCard.classList.add("character-card")
+                characterCard.classList.add(`character-card`, `id-${char.id}`)
                 characterCard.setAttribute("id", `${char.id}`)
                 characterCard.innerHTML = `
                 <div id="cards-container">
@@ -30,8 +49,9 @@ let getCharacter = (apifecth) => {
                 </div>
                 `
                 characterCards.appendChild(characterCard)
+                //CHARACTER CARDS
 
-                //Cuando se da click en alguno de los personajes, se muestra el siguiente modal creado a continuacion
+                //SHOW MODAL
                 let showModal = () => {
                     let modal = document.createElement("div")
                     modal.classList.add("modal")
@@ -51,14 +71,17 @@ let getCharacter = (apifecth) => {
                     <a href="${char.url}">Click here to visit ${char.name} website</a>
                     `
                     modal.appendChild(detailsFromChar)
+                    //SHOW MODAL
+
+                    //CLOSE MODAL
                     let closeButton = document.createElement("button")
                     closeButton.classList.add("close-button")
                     modal.appendChild(closeButton)
-                    //Cuando se da click en el boton para cerrar el modal, este se elimina
                     let hideModal = () => {
                         modal.remove()
                     }
                     closeButton.addEventListener("click", hideModal)
+                    //CLOSE MODAL
                 }
 
                 characterCard.addEventListener("click", showModal)
@@ -67,56 +90,96 @@ let getCharacter = (apifecth) => {
         .catch(error => console.log("Error catch"))
 }
 
-// ---------------------------- SAQUE LAS FUNCIONES DEL SCOPE YA QUE SE GENERABA UN PROBLEMA CON EL ADEVENTLISTENER, LAS COLOQUE AFUERA
-//----------------------------- PARA QUE NO EXISTIERA DICHO CONFLICTO
 let showNextPage = () => {
-    //Con esto obtenemos en que pagina estamos
-    // let actualPage = answer.info.next.split("=").pop()
+    //DELETE ALL SLIDES
+    allSlides = Array.from(document.querySelectorAll(".slide"))
+    allSlides.forEach(slide => {
+        slide.remove()
+    })
+    //DELETE ALL SLIDES
 
-    //  Elimino todas las cartas que esten a la vista
-    allCards = Array.from(document.getElementsByTagName("div"))
+    //DELETE ALL OF THE CARDS
+    allCards = Array.from(document.querySelectorAll(".character-card"))
     allCards.forEach(card => {
         card.remove()
     })
-    //Aplique un timeout para que se vea claramente como si se borran todos los elementos en pantalla
-    //al hacer click en el boton de siguiente pagina
+    //DELETE ALL OF THE CARDS
 
-    //***El problema esta en que se llama a la API mas de una vez, volviendo a escribir valores que fueron previamente borrados
-    //Aqui imprimo en consola la informacion que nos muestra como se llaman multiples "paginas" del API
-    console.log(charactersInfo.next)
+    //CALL NEW PAGE
     apifetch = charactersInfo.next;
     return getCharacter(apifetch);
+    //CALL NEW PAGE
 
 }
-let nextPageButton = document.getElementById("next-page")
 nextPageButton.addEventListener("click", showNextPage)
 
-//Con esta funcion se resuelve el click a la pagina anterior
-let previusPageButton = document.getElementById("previus-page")
 let showPreviousPage = () => {
-    // let actualPage = answer.info.prev.split("=").pop()
-    //Eliminamos todas las cartes que se encuentren visibles
-    allCards = Array.from(document.getElementsByTagName("div"))
-    allCards.forEach(card => {
-        card.remove()
-    })
-    if (charactersInfo.prev == null) {
-        return
-    } else {
-        //Solo quiero que funcione en caso de que exista una pagina anterior
-        apifetch = charactersInfo.prev;
-        //Se llama a la API con la informacion de la pagina anterior
-        return getCharacter(apifetch);
 
+
+
+    if (charactersInfo.prev == null) {
+    } else {
+        //DELETE ALL SLIDES
+        allSlides = Array.from(document.querySelectorAll(".slide"))
+        allSlides.forEach(slide => {
+            slide.remove()
+        })
+        //DELETE ALL SLIDES
+
+        //DELETE ALL OF THE CARDS
+        allCards = Array.from(document.querySelectorAll(".character-card"))
+        allCards.forEach(card => {
+            card.remove()
+        })
+        //DELETE ALL OF THE CARDS
+        apifetch = charactersInfo.prev;
+        return getCharacter(apifetch);
     }
 }
-// Escuchamos cuando el boton recibe un click para llamar a la funcion anterior
+
 previusPageButton.addEventListener("click", showPreviousPage)
 
 
-//Aqui se llama por primera vez la funcion. pasando como parametro el API original, con la primera pagina de elementos
 getCharacter(apifetch)
 
 
+// ------------------------------------------------------ MENU BUTTON (MOBILE)
+let menuButton = document.getElementById("menu")
+let openMenu = () => {
+    let menuModal = document.createElement("div")
+    menuModal.classList.add("menu-modal")
+    document.body.insertBefore(menuModal, characterCards)
 
+    let close = document.createElement("div")
+    close.classList.add("close-menu")
+    close.innerText = "Close menu"
+    menuModal.appendChild(close)
+
+    let github = document.createElement("div")
+    github.classList.add("mobile-menu-github")
+    github.innerHTML = `<a href="https://github.com/DavidGarciaManzana" target="_blank"></a>`
+    menuModal.appendChild(github)
+
+    let linkedin = document.createElement("div")
+    linkedin.classList.add("mobile-menu-linkedin")
+    linkedin.innerHTML = `<a href="https://www.linkedin.com/in/davidgarciaman/" target="_blank"></a>`
+    menuModal.appendChild(linkedin)
+
+    let portfolio = document.createElement("div")
+    portfolio.classList.add("mobile-menu-portfolio")
+    portfolio.innerHTML = `<a href="https://www.davidgarxa.com" target="_blank">Visit my portfolio!!!</a>`
+    menuModal.appendChild(portfolio)
+
+    let api = document.createElement("div")
+    api.classList.add("mobile-menu-api")
+    api.innerHTML = `<a href="https://rickandmortyapi.com/" target="_blank">Rick and Morty API</a>`
+    menuModal.appendChild(api)
+
+    let closeMenu = () => {
+        menuModal.remove()
+    }
+    close.addEventListener("click", closeMenu)
+}
+
+menuButton.addEventListener("click", openMenu)
 

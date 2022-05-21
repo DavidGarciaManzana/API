@@ -1,9 +1,339 @@
-.character-card {
-    border          : 2px solid black;
+/*-----------------------------------------------HEADER-------------------------------------------------*/
+
+header {
+    width  : 100%;
+    height : 8rem;
+}
+
+.david {
+    width               : 3.5rem;
+    height              : 3.5rem;
+    background-image    : url("media/images/profile.webp");
+    background-size     : 100%;
+    background-position : 0 -.4rem;
+    background-repeat   : no-repeat;
+    border-radius       : 100%;
+    margin-top          : 1rem;
+}
+
+.menu {
+    background-color : black;
+    border-radius    : 25px;
+    position         : absolute;
+    right            : 1rem;
+    top              : 1rem;
+    color            : #fff;
+    padding          : 1rem;
+}
+
+.menu-modal {
+    position                : fixed;
+    top                     : 0;
+    left                    : 0;
+    width                   : 100%;
+    height                  : 20rem;
+    display                 : flex;
+    flex-direction          : column;
+    justify-content         : space-evenly;
+    align-items             : flex-end;
+
+    background              : rgba(255, 255, 255, 0.1);
+    box-shadow              : 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter         : blur(20px);
+    -webkit-backdrop-filter : blur(20px);
+}
+
+.menu-modal div {
+    position          : relative;
+    right             : 1rem;
+    height            : 3rem;
+    background-size   : contain;
+    background-repeat : no-repeat;
+}
+
+.close-menu {
+    width            : 10rem;
+    background-color : black;
+    border-radius    : 25px;
+    color            : white;
+    display          : flex;
+    justify-content  : center;
+    align-items      : center;
+}
+
+.mobile-menu-github {
+    background-image : url("media/images/github.png");
+    width            : 3rem;
+}
+
+.mobile-menu-github a {
+    display : block;
+    width   : 3rem;
+    height  : 3rem;
+}
+
+.mobile-menu-linkedin {
+    background-image : url("media/images/linkedin.png");
+    width            : 3rem;
+}
+
+.mobile-menu-linkedin a {
+    display : block;
+    width   : 3rem;
+    height  : 3rem;
+}
+
+.mobile-menu-portfolio {
+    background-color : black;
+    width            : 10rem;
+    border-radius    : 25px;
+}
+
+.mobile-menu-portfolio a {
+    text-decoration : none;
+    color           : white;
+    padding         : 1rem;
+    display         : block;
+    width           : 10rem;
+    height          : 3rem;
+}
+
+.mobile-menu-api {
+    background-color : black;
+    width            : 10rem;
+    border-radius    : 25px;
+}
+
+.mobile-menu-api a {
+    display         : block;
+    width           : 10rem;
+    height          : 3rem;
+    text-decoration : none;
+    color           : white;
+    padding         : 1rem;
+}
+
+
+@media only screen and (min-width : 768px) {
+    .menu {
+        display : none;
+    }
+
+    .header {
+        position : relative;
+    }
+
+    header div {
+        position          : absolute;
+        background-size   : contain;
+        background-repeat : no-repeat;
+        width             : 3rem;
+        height            : 3rem;
+    }
+
+    header div a {
+        display : block;
+        width   : 3rem;
+        height  : 3rem;
+    }
+
+    .github {
+        background-image : url("media/images/github.png");
+        top              : 1rem;
+        right            : 1rem;
+    }
+
+    .linkedin {
+        background-image : url("media/images/linkedin.png");
+        top              : 1rem;
+        right            : 5rem;
+    }
+
+    .portfolio {
+        background-image : url("media/images/briefcase.png");
+        top              : 1rem;
+        right            : 9rem;
+    }
+
+    .api {
+        background-image : url("media/images/api.png");
+        top              : 1rem;
+        right            : 13rem;
+    }
+}
+
+@media only screen and (min-width : 1024px) {
+    .david {
+        width      : 4rem;
+        height     : 4rem;
+        margin-top : .5rem;
+    }
+
+    header div {
+        width  : 4rem;
+        height : 4rem;
+    }
+
+    header div a {
+        width  : 4rem;
+        height : 4rem;
+    }
+
+    .github {
+        top   : 1rem;
+        right : 1rem;
+    }
+
+    .linkedin {
+        top   : 1rem;
+        right : 6rem;
+    }
+
+    .portfolio {
+        top   : 1rem;
+        right : 11rem;
+    }
+
+    .api {
+        top   : 1rem;
+        right : 16rem;
+    }
+}
+
+/*-----------------------------------------------CARROUSEL-------------------------------------------------*/
+.carrousel {
+    height   : 20rem;
+    width    : 100%;
+    overflow : hidden;
+}
+
+@keyframes scroll {
+    0% {
+        transform : translateX(0);
+    }
+    100% {
+        transform : translateX(calc(-15rem * 21.3));
+    }
+}
+
+@media only screen and (min-width : 425px) {
+    @keyframes scroll {
+        100% {
+            transform : translateX(calc(-15rem * 21));
+        }
+    }
+}
+
+@media only screen and (min-width : 580px) {
+    @keyframes scroll {
+        100% {
+            transform : translateX(calc(-15rem * 20.3));
+        }
+    }
+}
+
+@media only screen and (min-width : 768px) {
+    @keyframes scroll {
+        100% {
+            transform : translateX(calc(-15rem * 19.6));
+        }
+    }
+}
+
+@media only screen and (min-width : 1024px) {
+    @keyframes scroll {
+        100% {
+            transform : translateX(calc(-15rem * 18.6));
+        }
+    }
+}
+
+@media only screen and (min-width : 1200px) {
+    @keyframes scroll {
+        100% {
+            transform : translateX(calc(-15rem * 18.2));
+        }
+    }
+}
+
+@media only screen and (min-width : 1500px) {
+    @keyframes scroll {
+        100% {
+            transform : translateX(calc(-15rem * 18.8));
+        }
+    }
+}
+
+
+.slider {
+    background : white;
+    height     : 100px;
+    margin     : auto;
+    position   : relative;
+    width      : 960px;
+}
+
+.slider .slide-track {
+    animation  : scroll 40s linear infinite alternate;
+    display    : flex;
+    width      : calc(250px * 14);
+    column-gap : 2rem;
+
+
+}
+
+.slider .slide {
+    height           : 15rem;
+    width            : 15rem;
+    border-radius    : 35px;
+    background-image : linear-gradient(to right top, #ff9933, #ffab24, #fabe12, #f2d200, #e6e500, #beef33, #91f759, #55fc7e, #00f2b4, #00e4da, #00d2eb, #50bfe6);
+
+}
+
+.container5 {
+    /*border          : 1px solid black;*/
     display         : flex;
+    flex-direction  : column;
     justify-content : center;
-    text-align      : center;
-    cursor          : pointer;
+    align-items     : center;
+    padding         : 2rem;
+    font-size       : .5rem;
+    margin          : 0 1rem;
+    width           : 9rem;
+    height          : 11rem;
+}
+
+.container5 img {
+    height        : 5rem;
+    border-radius : 100%;
+}
+
+/*-----------------------------------------------CARROUSEL-------------------------------------------------*/
+
+
+/*-----------------------------------------------CARDS-------------------------------------------------*/
+.character-cards {
+    display               : grid;
+    grid-template-columns : repeat(auto-fill, minmax(9rem, 1fr));
+    grid-column-gap       : 1rem;
+    grid-row-gap          : 1rem;
+    justify-content       : space-around;
+}
+
+.character-card {
+    background-image : linear-gradient(to left bottom, #ff9933, #ffab24, #fabe12, #f2d200, #e6e500, #beef33, #91f759, #55fc7e, #00f2b4, #00e4da, #00d2eb, #50bfe6);
+    border-radius    : 25px;
+    display          : flex;
+    justify-content  : center;
+    align-items      : center;
+    text-align       : center;
+    cursor           : pointer;
+    height           : 15rem;
+    font-size        : .6rem;
+}
+
+.character-card img {
+    width : 5rem;
 }
 
 .modal {
@@ -51,7 +381,25 @@
     }
 
     .modal {
-        font-size : .6rem;
+        font-size : .45rem;
+    }
+}
+
+@media only screen and (min-width : 960px) {
+    .character-cards {
+        grid-template-columns : repeat(auto-fill, minmax(10rem, 1fr));
+    }
+}
+
+@media only screen and (min-width : 1024px) {
+    .modal {
+        font-size : .5rem;
+    }
+}
+
+@media only screen and (min-width : 1056px) {
+    .character-cards {
+        grid-template-columns : repeat(auto-fill, minmax(15rem, 1fr));
     }
 }
 
@@ -86,3 +434,73 @@ footer button {
 
 }
 
+/*-----------------------------------------------CARDS-------------------------------------------------*/
+
+.custom-btn {
+    width: 130px;
+    height: 40px;
+    color: black;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+}
+.btn {
+    background-color: #ff9933;
+    border-radius: 25px;
+    margin-bottom: 2rem;
+    background-image: linear-gradient(to right top, #ff9933, #ffab24, #fabe12, #f2d200, #e6e500, #beef33, #91f759, #55fc7e, #00f2b4, #00e4da, #00d2eb, #50bfe6);
+    border: none;
+    z-index: 1;
+}
+.btn:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 5px;
+    background-color: #ff9933
+    background-image: linear-gradient(to right top, #ff9933, #ffab24, #fabe12, #f2d200, #e6e500, #beef33, #91f759, #55fc7e, #00f2b4, #00e4da, #00d2eb, #50bfe6);
+    box-shadow:
+            -7px -7px 20px 0px #fff9,
+            -4px -4px 5px 0px #fff9,
+            7px 7px 20px 0px #0002,
+            4px 4px 5px 0px #0001;
+    transition: all 0.3s ease;
+}
+.btn:hover {
+    color: black;
+}
+.btn:hover:after {
+    top: 0;
+    height: 100%;
+    border-radius: 25px;
+}
+.btn:active {
+    top: 2px;
+}
+
+.prev {
+    font-size: 1rem;
+    width: 15rem;
+    height: 3rem;
+    top: 1rem;
+}
+.next {
+    font-size: 1rem;
+    width: 15rem;
+    height: 3rem;
+    top: 1rem;
+}

@@ -2,15 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
     <title>Rick and Morty API</title>
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<header>
+    <div class="github" ><a href="https://github.com/DavidGarciaManzana" target="_blank" aria-label="Github"></a></div>
+    <div class="linkedin" ><a href="https://www.linkedin.com/in/davidgarciaman/" target="_blank" aria-label="LinkedIn"></a></div>
+    <div class="portfolio"><a href="https://www.davidgarxa.com" target="_blank" aria-label="Portfolio"></a></div>
+    <div class="api"><a href="https://rickandmortyapi.com/" target="_blank" aria-label="API"></a></div>
+    <div class="david"></div>
+    <button class="menu" id="menu">menu</button>
+</header>
+<section class="carrousel">
+    <div class="slider">
+        <div class="slide-track" id="slide-track">
+        </div>
+    </div>
+</section>
 <section class="character-cards" id="characterCards"></section>
 <footer>
-    <button id="previus-page">Previus page</button>
-    <button id="next-page">Next Page</button>
+    <button id="previus-page" class="btn custom-btn prev">Previus page</button>
+    <button id="next-page" class="btn custom-btn next">Next Page</button>
 </footer>
 <script src="script.js"></script>
 </body>
